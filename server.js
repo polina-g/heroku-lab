@@ -34,6 +34,30 @@ app.use(methodOverride('_method'));
 app.get('/', (req, res) => {
     res.send('Hello, World');
 });
+//=====================NEW===========================
+app.get('/tweets/new', (req, res) => {
+    res.send('THIS IS THE NEW TWEET ROUTE');
+});
+//=====================DELETE========================
+app.delete('/tweets/:id', (req, res) => {
+    res.send('THIS IS THE DELETE TWEET ROUTE');
+});
+//=====================UPDATE========================
+app.put('/tweets/:id', (req, res) => {
+    res.send('THIS IS THE UPDATE TWEET ROUTE');
+});
+//=====================CREATE========================
+app.post('/tweets', (req, res) => {
+    res.send('THIS IS THE CREATE TWEET ROUTE');
+});
+//=====================EDIT==========================
+app.get('/tweets/:id', (req, res) => {
+    res.send('THIS IS THE EDIT TWEET ROUTE');
+});
+//=====================SHOW==========================
+app.get('/tweets/:id', (req, res) => {
+    res.send('THIS IS THE SHOW TWEET ROUTE');
+});
 //===================================================
 //LISTENER
 //===================================================
