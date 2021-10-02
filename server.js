@@ -31,40 +31,66 @@ app.use(methodOverride('_method'));
 //===================================================
 //ROUTES
 //===================================================
-//=====================INDEX=========================
+//=====================INDEX=========================//tested
 app.get('/', (req, res) => {
-    res.send('Hello, World');
+    res.redirect('/tweets');
 });
 app.get('/tweets', (req, res) => {
     Tweet.find({}, (err, tweets) => {
         res.send(tweets);
+        // res.render('index.ejs', {
+        //     tweets: tweets
+        // })
     })
 })
 //=====================NEW===========================
 app.get('/tweets/new', (req, res) => {
     res.send('THIS IS THE NEW TWEET ROUTE');
+    // res.render('new.ejs')
 });
-//=====================DELETE========================
+//=====================DELETE========================//tested
 app.delete('/tweets/:id', (req, res) => {
-    res.send('THIS IS THE DELETE TWEET ROUTE');
+    Tweet.findByIdAndDelete(req.params.id, (err, deletedTweet) => {
+        res.redirect('/tweets');
+    })
 });
-//=====================UPDATE========================
+//=====================UPDATE========================//tested
 app.put('/tweets/:id', (req, res) => {
-    res.send('THIS IS THE UPDATE TWEET ROUTE');
+    Tweet.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new: true},
+        (err, updatedTweet) => {
+            console.log(updatedTweet);
+            res.redirect('/tweets');
+        }
+    );
 });
-//=====================CREATE========================
+//=====================CREATE========================//tested
 app.post('/tweets', (req, res) => {
     Tweet.create(req.body, (err, tweet) => {
         res.redirect('/tweets');
     }); 
 });
-//=====================EDIT==========================
+//=====================EDIT==========================//tested
 app.get('/tweets/:id/edit', (req, res) => {
-    res.send('THIS IS THE EDIT TWEET ROUTE');
+    Tweet.findById(req.params.id, (err, tweet) => {
+        res.send(tweet + '' + 'id: ' + req.params.id);
+        // res.render('edit.ejs', {
+        //     tweet: tweet,
+        //     id: req.params.id
+        // });
+    })
 });
-//=====================SHOW==========================
+//=====================SHOW==========================//tested
 app.get('/tweets/:id', (req, res) => {
-    res.send('THIS IS THE SHOW TWEET ROUTE');
+    Tweet.findById(req.params.id, (err, tweet) => {
+        res.send(tweet);
+        // res.render('show.ejs', {
+        //     tweet: tweet,
+        //     id: req.params.id
+        //  });
+    });
 });
 //===================================================
 //LISTENER
