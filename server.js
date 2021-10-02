@@ -4,6 +4,7 @@
 const express = require('express');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const Tweet = require('./models/tweet.js')
 const app = express();
 const db = mongoose.connection;
 require('dotenv').config();
@@ -34,6 +35,11 @@ app.use(methodOverride('_method'));
 app.get('/', (req, res) => {
     res.send('Hello, World');
 });
+app.get('/tweets', (req, res) => {
+    Tweet.find({}, (err, tweets) => {
+        res.send(tweets);
+    })
+})
 //=====================NEW===========================
 app.get('/tweets/new', (req, res) => {
     res.send('THIS IS THE NEW TWEET ROUTE');
@@ -48,10 +54,12 @@ app.put('/tweets/:id', (req, res) => {
 });
 //=====================CREATE========================
 app.post('/tweets', (req, res) => {
-    res.send('THIS IS THE CREATE TWEET ROUTE');
+    Tweet.create(req.body, (err, tweet) => {
+        res.redirect('/tweets');
+    }); 
 });
 //=====================EDIT==========================
-app.get('/tweets/:id', (req, res) => {
+app.get('/tweets/:id/edit', (req, res) => {
     res.send('THIS IS THE EDIT TWEET ROUTE');
 });
 //=====================SHOW==========================
