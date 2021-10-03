@@ -1,8 +1,12 @@
 body {
     background-color: #f7f59e;
-    height: 100vh; 
+    height: 100%;
 }
 
 .my-card-class {
     margin-top: 50px; 
+}
+
+.tweet-img {
+    width: 50%; 
 }

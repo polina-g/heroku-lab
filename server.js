@@ -38,7 +38,6 @@ app.get('/', (req, res) => {
 });
 app.get('/tweets', (req, res) => {
     Tweet.find({}, (err, tweets) => {
-        // res.send(tweets);
         res.render('index.ejs', {
             tweets: tweets
         })

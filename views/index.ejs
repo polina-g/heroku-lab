@@ -6,14 +6,21 @@
 </head>
 <body>
     <%- include('./partials/nav.ejs');  %>
+    <% for (let i = 0; i < tweets.length; i++) { %>
     <div class="columns is-centered">
         <div class="card column is-two-thirds my-card-class">
-            <header class="card-header is-centered">
-                Tweet Title
+            <header class="card-header">
+                <h1 class="is-size-2 card-header-title"><%= tweets[i].title %></h1>
+                <% if(tweets[i].sponsored) { %>
+                <p>***This Post Is Sponsored</p>
+                <% } %>
             </header>
             <div class="card-content">
                 <div class="content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus velit possimus quae aut dolor est deserunt explicabo cumque, inventore in nesciunt reiciendis omnis quod, ad veritatis voluptas magnam rerum voluptatem?
+                    <p class="is-size-4"><%= tweets[i].text %></p><br>
+                    <div class="card-image">
+                        <img class="tweet-img" src="<%=tweets[i].img%>">
+                    </div>
                 </div>
             </div>
             <footer class="card-footer">
@@ -29,6 +36,7 @@
             </div>
         </div>
     </div>
+    <% } %>
 
 </body>
 </html>
