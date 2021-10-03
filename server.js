@@ -28,6 +28,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(express.static('public'))
 //===================================================
 //ROUTES
 //===================================================
@@ -37,10 +38,10 @@ app.get('/', (req, res) => {
 });
 app.get('/tweets', (req, res) => {
     Tweet.find({}, (err, tweets) => {
-        res.send(tweets);
-        // res.render('index.ejs', {
-        //     tweets: tweets
-        // })
+        // res.send(tweets);
+        res.render('index.ejs', {
+            tweets: tweets
+        })
     })
 })
 //=====================NEW===========================
