@@ -43,7 +43,7 @@ app.get('/tweets', (req, res) => {
         })
     })
 })
-//=====================NEW===========================
+//=====================NEW===========================//Tested and Done
 app.get('/tweets/new', (req, res) => {
     res.render('new.ejs')
 });
@@ -53,26 +53,30 @@ app.delete('/tweets/:id', (req, res) => {
         res.redirect('/tweets');
     })
 });
-//=====================UPDATE========================//tested
+//=====================UPDATE========================//tested and Done
 app.put('/tweets/:id', (req, res) => {
+    req.body.sponsored = !!req.body.sponsored;
+    
     Tweet.findByIdAndUpdate(
         req.params.id,
         req.body,
         {new: true},
         (err, updatedTweet) => {
-            console.log(updatedTweet);
+            if(err) {
+                console.log('someting went wrong')
+            }
             res.redirect('/tweets');
         }
     );
 });
-//=====================CREATE========================//tested
+//=====================CREATE========================//tested and Done
 app.post('/tweets', (req, res) => {
     req.body.sponsored = !!req.body.sponsored;
     Tweet.create(req.body, (err, tweet) => {
         res.redirect('/tweets');
     }); 
 });
-//=====================EDIT==========================//tested
+//=====================EDIT==========================//tested and Done
 app.get('/tweets/:id/edit', (req, res) => {
     Tweet.findById(req.params.id, (err, tweet) => {
         // res.send(tweet + '' + 'id: ' + req.params.id);
