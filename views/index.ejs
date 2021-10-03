@@ -32,7 +32,9 @@
                         <a href="/tweets/<%=tweets[tweets.length-i-1]['_id']%>/edit" class="card-footer-item button is-primary is-focused is-one-fifth">Edit</a>
                     </div>
                     <div class="column">
-                        <a href="#" class="card-footer-item button is-danger">Delete</a>
+                        <form action="/tweets/<%=tweets[tweets.length-i-1]['_id']%>?_method=DELETE" method = "POST">
+                            <button class="card-footer-item button is-danger" type="submit">Delete</button>
+                        </form>
                     </div>
                 </div>
             </footer>
