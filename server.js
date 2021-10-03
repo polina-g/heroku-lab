@@ -45,8 +45,7 @@ app.get('/tweets', (req, res) => {
 })
 //=====================NEW===========================
 app.get('/tweets/new', (req, res) => {
-    res.send('THIS IS THE NEW TWEET ROUTE');
-    // res.render('new.ejs')
+    res.render('new.ejs')
 });
 //=====================DELETE========================//tested
 app.delete('/tweets/:id', (req, res) => {
@@ -68,6 +67,7 @@ app.put('/tweets/:id', (req, res) => {
 });
 //=====================CREATE========================//tested
 app.post('/tweets', (req, res) => {
+    req.body.sponsored = !!req.body.sponsored;
     Tweet.create(req.body, (err, tweet) => {
         res.redirect('/tweets');
     }); 
@@ -75,11 +75,11 @@ app.post('/tweets', (req, res) => {
 //=====================EDIT==========================//tested
 app.get('/tweets/:id/edit', (req, res) => {
     Tweet.findById(req.params.id, (err, tweet) => {
-        res.send(tweet + '' + 'id: ' + req.params.id);
-        // res.render('edit.ejs', {
-        //     tweet: tweet,
-        //     id: req.params.id
-        // });
+        // res.send(tweet + '' + 'id: ' + req.params.id);
+        res.render('edit.ejs', {
+            tweet: tweet,
+            id: req.params.id
+        });
     })
 });
 //=====================SHOW==========================//tested

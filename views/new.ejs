@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs');  %>
+    <title>Tweeter</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs');  %>
+    <form action="/tweets" method="POST">
+        <div class="columns is-centered">
+            <div class="card column is-two-thirds my-card-class">
+                <header class="card-header">
+                    <div class="card-header-title">
+                        <div class="field">
+                            <label class="label">Tweet Title</label>
+                            <div class="control">
+                              <input class="input is-primary" type="text" placeholder="Tweet title: " name="title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                          <label class="checkbox">
+                            <input type="checkbox" name="sponsored">
+                            This post is Sponsored
+                          </label>
+                        </div>
+                      </div>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <div class="field">
+                            <label class="label">Author</label>
+                            <div class="control">
+                              <input class="input is-primary" type="text" placeholder="Enter your name " name="author">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Message</label>
+                            <div class="control">
+                              <textarea class="textarea is-primary" placeholder="Share your thoughts..." name="text"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-image">
+                            <input class="input is-primary" type="text" placeholder="Add a photo!" name="img">
+                        </div>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <div class="columns">
+                        <div class="column">
+                            <button type="submit" class="button is-primary">Submit tweet</button>
+                        </div>
+                        <div class="column">
+                            <a href="./tweets" class="card-footer-item button is-danger">Go Back</a>
+                        </div>
+                    </div>
+                </footer>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

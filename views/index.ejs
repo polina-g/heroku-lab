@@ -10,23 +10,26 @@
     <div class="columns is-centered">
         <div class="card column is-two-thirds my-card-class">
             <header class="card-header">
-                <h1 class="is-size-2 card-header-title"><%= tweets[i].title %></h1>
-                <% if(tweets[i].sponsored) { %>
+                <div class="card-header-title">
+                    <h1 class="is-size-2"><%= tweets[tweets.length-i-1].title %><br><span class="is-size-4"><%=tweets[tweets.length-i-1].createdAt%></span></h1>
+                </div>
+                <h4></h4>
+                <% if(tweets[tweets.length-i-1].sponsored) { %>
                 <p>***This Post Is Sponsored</p>
                 <% } %>
             </header>
             <div class="card-content">
                 <div class="content">
-                    <p class="is-size-4"><%= tweets[i].text %></p><br>
+                    <p class="is-size-4"><%= tweets[tweets.length-i-1].text %></p><br>
                     <div class="card-image">
-                        <img class="tweet-img" src="<%=tweets[i].img%>">
+                        <img class="tweet-img" src="<%=tweets[tweets.length-i -1].img%>">
                     </div>
                 </div>
             </div>
             <footer class="card-footer">
                 <div class="columns">
                     <div class="column">
-                        <a href="#" class="card-footer-item button is-primary is-focused is-one-fifth">Edit</a>
+                        <a href="./tweets/<%=tweets.length-i%>/edit" class="card-footer-item button is-primary is-focused is-one-fifth">Edit</a>
                     </div>
                     <div class="column">
                         <a href="#" class="card-footer-item button is-danger">Delete</a>

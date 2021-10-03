@@ -1,6 +1,6 @@
 body {
     background-color: #f7f59e;
-    height: 100%;
+    min-height: 100vh;
 }
 
 .my-card-class {
